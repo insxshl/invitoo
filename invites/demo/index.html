@@ -89,7 +89,7 @@ function copyLink() {
     });
 }
 </script>
-<audio id="bgmusic" autoplay loop>
+<audio id="bgmusic">
   <source src="Heriya.mp3" type="audio/mp3">
 </audio>
 
@@ -98,7 +98,7 @@ style="
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 12px 15px;
+  padding: 12px 18px;
   border-radius: 50px;
   border: none;
   background: black;
@@ -106,22 +106,23 @@ style="
   font-weight: bold;
   cursor: pointer;
 ">
-🔊 Mute
+▶️ Play
 </button>
 
 <script>
 let music = document.getElementById("bgmusic");
 let btn = document.getElementById("musicBtn");
 
-let isPlaying = true;
+let isPlaying = false;
 
-function toggleMusic(){
-  if(isPlaying){
-    music.pause();
-    btn.innerHTML = "🔇 Unmute";
-  } else {
+function toggleMusic() {
+  if (!isPlaying) {
     music.play();
-    btn.innerHTML = "🔊 Mute";
+    btn.innerHTML = "⏹ Stop";
+  } else {
+    music.pause();
+    music.currentTime = 0; // reset song
+    btn.innerHTML = "▶️ Play";
   }
   isPlaying = !isPlaying;
 }
