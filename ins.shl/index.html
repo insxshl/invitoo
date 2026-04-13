@@ -40,5 +40,42 @@ document.getElementById("share").href =
   "https://wa.me/?text=Join our wedding invite: " + pageLink;
 </script>
 
+<audio id="bgmusic" autoplay loop>
+  <source src="Heriya.mp3" type="audio/mp3">
+</audio>
+
+<button onclick="toggleMusic()" id="musicBtn"
+style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 15px;
+  border-radius: 50px;
+  border: none;
+  background: black;
+  color: gold;
+  font-weight: bold;
+  cursor: pointer;
+">
+🔊 Mute
+</button>
+
+<script>
+let music = document.getElementById("bgmusic");
+let btn = document.getElementById("musicBtn");
+
+let isPlaying = true;
+
+function toggleMusic(){
+  if(isPlaying){
+    music.pause();
+    btn.innerHTML = "🔇 Unmute";
+  } else {
+    music.play();
+    btn.innerHTML = "🔊 Mute";
+  }
+  isPlaying = !isPlaying;
+}
+</script>
 </body>
 </html>
