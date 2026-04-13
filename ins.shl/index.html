@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wedding Invite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+</head>
+
+<body style="text-align:center; font-family:sans-serif; background:#fff0f5; padding:20px;">
+
+  <h1 id="names">Rahul ❤️ Neha</h1>
+  <p>We are getting married!</p>
+
+  <h3 id="date">📅 25 Dec 2026</h3>
+
+  <a id="map" href="https://maps.google.com" target="_blank">
+    📍 View Location
+  </a>
+
+  <br><br>
+
+  <button onclick="rsvp()" style="padding:10px 20px;">
+    Will you attend?
+  </button>
+
+  <br><br>
+
+  <a id="share" href="#">
+    📲 Share on WhatsApp
+  </a>
+
+<script>
+function rsvp(){
+  alert("Thanks for your response ❤️");
+}
+
+// WhatsApp share auto link
+const pageLink = window.location.href;
+document.getElementById("share").href =
+  "https://wa.me/?text=Join our wedding invite: " + pageLink;
+</script>
+
+</body>
+</html>
