@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rumala & Zohraiz - Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <title>Rumaila & Zohraiz | The Wedding</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
     <style>
         :root {
-            --light-pink: #fce4ec;
-            --cream: #fff9f0;
-            --peach: #ffecdb;
-            --text-dark: #4a4a4a;
-            --accent: #d4a373;
+            --gold-primary: #c5a059;
+            --gold-light: #e2c285;
+            --dark-charcoal: #1a1a1a;
+            --off-white: #faf8f5;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * {
@@ -24,321 +27,373 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--cream);
-            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--off-white);
+            color: var(--dark-charcoal);
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        h1, h2, h3, .brand {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, .luxury-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--gold-primary);
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069') no-repeat center center/cover;
+            color: white;
             text-align: center;
-            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
             padding: 20px;
         }
 
+        .hero-content {
+            z-index: 2;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: clamp(40px, 8vw, 80px);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 50px rgba(0,0,0,0.3);
+        }
+
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            color: var(--text-dark);
+            font-size: clamp(2.5rem, 10vw, 5.5rem);
+            margin-bottom: 15px;
+            font-weight: 400;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            font-style: italic;
-            max-width: 600px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 10px;
         }
 
-        /* --- Details Section --- */
+        /* --- Section Styling --- */
         .section-padding {
-            padding: 80px 20px;
+            padding: clamp(80px, 12vh, 150px) 20px;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: var(--gold-primary);
+        }
+
+        /* --- Details Grid --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
         .card {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
+            padding: 60px 40px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            border-radius: 2px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+            transition: var(--transition);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(197, 160, 89, 0.1);
+        }
+
+        .card i {
+            font-size: 2.8rem;
+            color: var(--gold-primary);
+            margin-bottom: 30px;
         }
 
         .card h3 {
-            color: var(--accent);
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--dark-charcoal);
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        /* --- Story Section --- */
-        .story-section {
-            background-color: var(--light-pink);
+        /* --- Countdown Wrap --- */
+        .countdown-wrap {
+            background: var(--dark-charcoal);
+            color: white;
             text-align: center;
         }
 
-        .story-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            font-style: italic;
-        }
-
-        /* --- Countdown --- */
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 50px;
         }
 
         .time-box {
-            background: var(--peach);
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 80px;
+            padding: 25px;
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            min-width: 120px;
+            background: rgba(255,255,255,0.03);
         }
 
         .time-box span {
             display: block;
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 3rem;
+            font-family: 'Cinzel';
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 5px;
         }
 
-        /* --- Gallery --- */
+        .time-box p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+        }
+
+        /* --- Luxury Gallery --- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
         }
 
         .gallery-item {
-            height: 300px;
-            border-radius: 15px;
+            height: 500px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            background: #eee;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: scale 0.5s ease;
+            transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .gallery-item:hover img {
-            scale: 1.1;
+            transform: scale(1.15);
         }
 
-        /* --- RSVP Form --- */
-        .rsvp-section {
-            background-color: var(--peach);
-        }
-
+        /* --- RSVP --- */
         .rsvp-form {
-            max-width: 500px;
+            max-width: 650px;
             margin: 0 auto;
             background: white;
-            padding: 40px;
-            border-radius: 20px;
+            padding: clamp(30px, 8vw, 60px);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--gold-primary);
         }
 
         .rsvp-form input, .rsvp-form textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            font-family: inherit;
+            padding: 18px;
+            margin-bottom: 25px;
+            border: 1px solid #f0f0f0;
+            background: #fafafa;
+            outline: none;
+            font-family: 'Montserrat';
+            font-size: 0.95rem;
         }
 
         .rsvp-form button {
             width: 100%;
-            padding: 15px;
-            background-color: var(--accent);
+            padding: 20px;
+            background: var(--dark-charcoal);
             color: white;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
+            font-family: 'Cinzel';
+            font-weight: 700;
+            letter-spacing: 3px;
+            transition: var(--transition);
         }
 
         .rsvp-form button:hover {
-            background-color: #bc8a5f;
+            background: var(--gold-primary);
+            letter-spacing: 5px;
         }
 
         /* --- Footer --- */
         footer {
+            background: #0a0a0a;
+            color: #666;
             text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            color: #888;
+            padding: 80px 20px;
         }
 
-        /* --- Responsive --- */
+        .footer-logo {
+            color: var(--gold-primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        /* Tablet & Mobile tweaks */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .countdown-container { gap: 10px; }
-            .time-box { padding: 10px; min-width: 60px; }
-            .time-box span { font-size: 1.2rem; }
+            .section-padding { padding: 80px 15px; }
+            .hero-content { width: 95%; padding: 40px 20px; }
+            .gallery-item { height: 350px; }
+            .time-box { min-width: 90px; padding: 15px; }
+            .time-box span { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div data-aos="fade-up" data-aos-duration="2000">
-            <h1>Rumala ❤️ Zohraiz</h1>
-            <p>Together with their families, they invite you to celebrate their wedding</p>
+        <div class="hero-content" data-aos="zoom-out" data-aos-duration="2500">
+            <p>You Are Cordially Invited</p>
+            <h1>Rumaila & Zohraiz</h1>
+            <div class="cursive">The Wedding Gala</div>
         </div>
     </section>
 
-    <section class="section-padding container">
-        <h2 style="text-align:center; margin-bottom: 40px;" data-aos="fade-up">Wedding Details</h2>
-        <div class="grid">
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3>Date</h3>
-                <p>April 30, 2026</p>
+    <div class="container">
+        <section class="section-padding">
+            <div class="section-title" data-aos="fade-up">
+                <h2>The Celebration</h2>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3>Time</h3>
-                <p>12:00 AM (Midnight)</p>
+            <div class="grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <h3>When</h3>
+                    <p>April 30, 2026<br>Guest Arrival: 11:30 PM</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-hotel"></i>
+                    <h3>Where</h3>
+                    <p>Invtioo Palace<br>Jubilee hills, Hyderabad</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-ring"></i>
+                    <h3>The Union</h3>
+                    <p>Nikaah Ceremony<br>11:00 AM Afternoon</p>
+                </div>
             </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <h3>Venue</h3>
-                <p>Invtioo Palace<br>Hyderabad</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="text-align: center;">
-        <h2 data-aos="fade-up">Counting Down to the Big Day</h2>
-        <div class="countdown-container" id="countdown" data-aos="zoom-in">
-            <div class="time-box"><span id="days">00</span>Days</div>
-            <div class="time-box"><span id="hours">00</span>Hrs</div>
-            <div class="time-box"><span id="minutes">00</span>Min</div>
-            <div class="time-box"><span id="seconds">00</span>Sec</div>
-        </div>
-    </section>
-
-    <section class="section-padding story-section">
-        <div class="container" data-aos="fade-right">
-            <h2 style="margin-bottom: 20px;">Our Story</h2>
-            <p class="story-text">
-                "What started as a simple coincidence blossomed into a lifetime of shared dreams. 
-                Rumala and Zohraiz found in each other a friendship that knows no bounds and a love 
-                that grows stronger with every passing sunset. From quiet conversations to 
-                unforgettable adventures, they've built a world together. Now, they are ready 
-                to say 'I do' and begin their greatest journey yet."
-            </p>
-        </div>
-    </section>
-
-<section class="section-padding container">
-    <h2 style="text-align:center; margin-bottom: 40px;" data-aos="fade-up">Gallery</h2>
-
-    <div class="gallery-grid">
-
-        <div class="gallery-item" data-aos="flip-left">
-            <img src="Dk1.png" alt="Wedding 1">
-        </div>
-
-        <div class="gallery-item" data-aos="flip-left" data-aos-delay="100">
-            <img src="Dk2.jpg" alt="Wedding 2">
-        </div>
-
-        <div class="gallery-item" data-aos="flip-left" data-aos-delay="200">
-            <img src="Dk3.jpg" alt="Wedding 3">
-        </div>
-
+        </section>
     </div>
-</section>
+
+    <section class="section-padding countdown-wrap">
+        <div class="container">
+            <h2 class="luxury-font" style="margin-bottom: 50px; color: var(--gold-primary);">Counting Down to the Moment</h2>
+            <div class="countdown-container" id="countdown">
+                <div class="time-box"><span id="days">00</span><p>Days</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Mins</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Secs</p></div>
+            </div>
         </div>
     </section>
 
-    <section class="section-padding rsvp-section">
+    <section class="section-padding">
         <div class="container">
-            <h2 style="text-align:center; margin-bottom: 40px;" data-aos="fade-up">RSVP</h2>
+            <div class="section-title" data-aos="fade-up">
+                <h2>The Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="Dk1.png" alt="Rumaila & Zohraiz">
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="Dk2.jpg" alt="Wedding Moment">
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="Dk3.jpg" alt="Celebration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: #f4f1ec;">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>RSVP</h2>
+                <p style="margin-top: 15px;">Your presence would be our greatest honor</p>
+            </div>
             <div class="rsvp-form" data-aos="fade-up">
                 <form id="weddingForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="number" placeholder="Number of Guests" required>
-                    <textarea rows="4" placeholder="Message for the Couple"></textarea>
-                    <button type="submit">Send Attendance</button>
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="number" placeholder="Total Number of Guests" required>
+                    <textarea rows="4" placeholder="Message for Rumaila & Zohraiz"></textarea>
+                    <button type="submit">Confirm Attendance</button>
                 </form>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Made with love for Rumala & Zohraiz</p>
-        <p>&copy; 2026 Wedding Invite</p>
+        <div class="footer-logo luxury-font">R & Z</div>
+        <p>Rumaila & Zohraiz's Wedding Gala</p>
+        <p style="margin-top: 30px; font-size: 0.7rem; letter-spacing: 3px; color: #444;">&copy; 2026 | DESIGNED FOR A LIFETIME</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Initialize Animations
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1200, once: true });
 
-        // Countdown Timer
+        // Accurate Wedding Countdown
         const weddingDate = new Date("April 30, 2026 00:00:00").getTime();
-
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
 
             if (distance < 0) {
                 clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "The Celebration has Begun!";
+                document.getElementById("countdown").innerHTML = "<h3 class='luxury-font' style='color:var(--gold-primary)'>Today Is The Big Day!</h3>";
             }
         }, 1000);
 
-        // RSVP Form Handling
         document.getElementById('weddingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your response! We look forward to seeing you.');
+            alert('Thank you! Your response for Rumaila & Zohraiz has been received.');
             this.reset();
         });
     </script>
