@@ -1,81 +1,273 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Wedding Invite</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamyar & Ayra | The Royal Union</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --cream: #fdfaf5;
+            --deep-black: #080808;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-gold: rgba(212, 175, 55, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: var(--deep-black); 
+            color: var(--cream); 
+            font-family: 'Poppins', sans-serif; 
+            overflow: hidden; 
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
+        }
+
+        h1, h2, .cursive { font-family: 'Great Vibes', cursive; color: var(--gold); font-weight: 400; }
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; inset: 0; background: #000; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999;
+        }
+
+        /* --- MOBILE RESPONSIVE ENVELOPE --- */
+        #envelope-scene {
+            position: fixed; inset: 0; display: flex; justify-content: center; align-items: center;
+            z-index: 1000; perspective: 1500px; padding: 20px;
+        }
+
+        .envelope-wrapper {
+            position: relative; 
+            width: 100%; 
+            max-width: 350px; /* PC Size */
+            aspect-ratio: 3 / 2;
+            cursor: pointer; 
+            transform-style: preserve-3d;
+        }
+
+        .envelope-base {
+            position: absolute; inset: 0; background: #1a1a1a;
+            border: 1px solid #222; border-radius: 8px; z-index: 1;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        /* Responsive Flap using Clip-path instead of Borders */
+        .envelope-flap {
+            position: absolute; top: 0; left: 0; width: 100%; height: 60%;
+            background: var(--gold);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            z-index: 10;
+        }
+
+        .card-inside {
+            position: absolute; top: 5%; left: 5%; width: 90%; height: 90%;
+            background: var(--cream); color: #111; padding: 20px;
+            text-align: center; border-radius: 4px; z-index: 5;
+            display: flex; flex-direction: column; justify-content: center;
+            border: 3px double var(--gold);
+        }
+
+        .wax-seal {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 50px; height: 50px; background: #7a0000; border-radius: 50%;
+            z-index: 11; display: flex; align-items: center; justify-content: center;
+            color: var(--gold); border: 2px solid var(--gold);
+        }
+
+        /* --- MAIN CONTENT --- */
+        #main-site { display: none; opacity: 0; }
+
+        section { 
+            padding: 80px 5%; min-height: 100vh; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+        }
+
+        .glass-box {
+            background: var(--glass); backdrop-filter: blur(15px);
+            border: 1px solid var(--border-gold);
+            padding: 50px 30px; border-radius: 25px; width: 100%; max-width: 800px;
+        }
+
+        /* --- ANIMATION HIDDEN STATES --- */
+        .reveal-up { opacity: 0; transform: translateY(40px); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); }
+
+        .itinerary-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; width: 100%; margin-top: 30px;
+        }
+
+        .event-card {
+            background: rgba(255,255,255,0.02); padding: 30px; border-radius: 20px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .divider { width: 0; height: 1px; background: var(--gold); margin: 15px auto; }
+
+        .time-box { 
+            background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold);
+            padding: 15px; border-radius: 12px; min-width: 80px;
+        }
+
+        .rsvp-form input, .rsvp-form select { 
+            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px;
+            border: 1px solid var(--border-gold); background: transparent; color: white;
+        }
+
+        .btn-gold { 
+            width: 100%; padding: 18px; background: var(--gold); border: none;
+            border-radius: 10px; font-weight: bold; cursor: pointer;
+        }
+
+        #music-btn {
+            position: fixed; bottom: 20px; left: 20px; z-index: 2000;
+            background: rgba(0,0,0,0.5); color: var(--gold); border: 1px solid var(--gold);
+            width: 45px; height: 45px; border-radius: 50%; display: none;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 3.5rem; }
+            .glass-box { padding: 30px 15px; }
+            .envelope-wrapper { max-width: 280px; }
+        }
+    </style>
 </head>
+<body>
 
-<body style="text-align:center; font-family:sans-serif; background:#fff0f5; padding:20px;">
+    <div id="preloader"><h2 class="cursive">Loading...</h2></div>
 
-  <h1 id="names">Rahul ❤️ Neha</h1>
-  <p>We are getting married!</p>
+    <audio id="bg-music" loop><source src="https://www.chosic.com/wp-content/uploads/2021/07/Rain-on-the-Window.mp3" type="audio/mpeg"></audio>
+    <button id="music-btn"><i class="fa-solid fa-music"></i></button>
 
-  <h3 id="date">📅 25 Dec 2026</h3>
+    <div id="envelope-scene">
+        <div class="envelope-wrapper" id="trigger">
+            <div class="envelope-base"></div>
+            <div class="card-inside" id="invitation-card">
+                <p class="serif" style="font-size: 0.7rem; letter-spacing: 2px;">BISMILLAH</p>
+                <h3 style="font-size: 1.8rem; margin: 10px 0;">Kamyar & Ayra</h3>
+                <p class="cursive" style="color: #aa892e;">Tap to Open</p>
+            </div>
+            <div class="envelope-flap" id="flap"></div>
+            <div class="wax-seal" id="seal"><i class="fa-solid fa-heart"></i></div>
+        </div>
+    </div>
 
-  <a id="map" href="https://maps.google.com" target="_blank">
-    📍 View Location
-  </a>
+    <div id="main-site">
+        <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1000') center/cover;">
+            <div class="reveal-up">
+                <p class="serif" style="letter-spacing: 5px;">THE WEDDING OF</p>
+                <h1 style="font-size: clamp(3rem, 10vw, 7rem);">Kamyar & Ayra</h1>
+                <p class="cursive" style="font-size: 2rem;">#KamyarAyra2026</p>
+            </div>
+        </section>
 
-  <br><br>
+        <section class="story">
+            <div class="glass-box reveal-scale">
+                <i class="fa-solid fa-quote-left" style="color: var(--gold); margin-bottom: 20px;"></i>
+                <h2 class="reveal-up">Our Story</h2>
+                <div class="divider"></div>
+                <p class="serif reveal-up" style="font-style: italic; line-height: 1.8;">
+                    "In a world full of temporary things, you are my forever prayer come true."
+                </p>
+            </div>
+        </section>
 
-  <button onclick="rsvp()" style="padding:10px 20px;">
-    Will you attend?
-  </button>
+        <section class="itinerary">
+            <h2 class="reveal-up">The Itinerary</h2>
+            <div class="itinerary-grid">
+                <div class="event-card reveal-up">
+                    <i class="fa-solid fa-car"></i>
+                    <h4>Baraat</h4>
+                    <p class="cursive" style="font-size: 1.5rem;">07:30 PM</p>
+                </div>
+                <div class="event-card reveal-up">
+                    <i class="fa-solid fa-pen-nib"></i>
+                    <h4>Nikah</h4>
+                    <p class="cursive" style="font-size: 1.5rem;">08:30 PM</p>
+                </div>
+                <div class="event-card reveal-up">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h4>Dinner</h4>
+                    <p class="cursive" style="font-size: 1.5rem;">09:30 PM</p>
+                </div>
+            </div>
+        </section>
 
-  <br><br>
+        <section class="rsvp">
+            <div class="glass-box reveal-scale">
+                <h2 class="reveal-up">RSVP</h2>
+                <form class="rsvp-form reveal-up">
+                    <input type="text" placeholder="Your Name" required>
+                    <select><option>Attending Alone</option><option>With Family</option></select>
+                    <button class="btn-gold">Confirm Presence</button>
+                </form>
+            </div>
+        </section>
+    </div>
 
-  <a id="share" href="#">
-    📲 Share on WhatsApp
-  </a>
+    <script>
+        window.onload = () => gsap.to("#preloader", { opacity: 0, onComplete: () => document.getElementById('preloader').remove() });
 
-<script>
-function rsvp(){
-  alert("Thanks for your response ❤️");
-}
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
 
-// WhatsApp share auto link
-const pageLink = window.location.href;
-document.getElementById("share").href =
-  "https://wa.me/?text=Join our wedding invite: " + pageLink;
-</script>
+        // Cinematic Responsive Animation
+        document.getElementById('trigger').addEventListener('click', () => {
+            music.play().catch(() => {}); musicBtn.style.display = 'block';
+            
+            const tl = gsap.timeline();
+            tl.to("#seal", { opacity: 0, scale: 0, duration: 0.3 })
+              .to("#flap", { rotationX: 180, duration: 0.7, ease: "power2.inOut" })
+              .to("#invitation-card", { y: "-120%", zIndex: 20, duration: 0.8, ease: "power2.out" })
+              .to("#invitation-card", { rotationY: 360, scale: 4, opacity: 0, duration: 1.2, ease: "expo.inOut" })
+              .to("#envelope-scene", { scale: 5, opacity: 0, pointerEvents: "none", duration: 1 })
+              .to("#main-site", { 
+                  display: "block", opacity: 1, duration: 1, 
+                  onStart: () => { document.body.style.overflow="auto"; initScrollAnims(); } 
+              }, "-=0.5");
+        });
 
-<audio id="bgmusic" autoplay loop>
-  <source src="Heriya.mp3" type="audio/mp3">
-</audio>
+        function initScrollAnims() {
+            gsap.registerPlugin(ScrollTrigger);
 
-<button onclick="toggleMusic()" id="musicBtn"
-style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px 15px;
-  border-radius: 50px;
-  border: none;
-  background: black;
-  color: gold;
-  font-weight: bold;
-  cursor: pointer;
-">
-🔊 Mute
-</button>
+            // Animate all elements with "reveal-up" class
+            gsap.utils.toArray(".reveal-up").forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: { trigger: el, start: "top 90%" },
+                    opacity: 1, y: 0, duration: 1.2, ease: "power3.out"
+                });
+            });
 
-<script>
-let music = document.getElementById("bgmusic");
-let btn = document.getElementById("musicBtn");
+            // Animate all elements with "reveal-scale" class
+            gsap.utils.toArray(".reveal-scale").forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: { trigger: el, start: "top 85%" },
+                    opacity: 1, scale: 1, duration: 1.5, ease: "elastic.out(1, 0.8)"
+                });
+            });
 
-let isPlaying = true;
+            // Animate Dividers
+            gsap.utils.toArray(".divider").forEach(line => {
+                gsap.to(line, {
+                    scrollTrigger: { trigger: line, start: "top 90%" },
+                    width: "60px", duration: 1.5, ease: "expo.out"
+                });
+            });
+        }
 
-function toggleMusic(){
-  if(isPlaying){
-    music.pause();
-    btn.innerHTML = "🔇 Unmute";
-  } else {
-    music.play();
-    btn.innerHTML = "🔊 Mute";
-  }
-  isPlaying = !isPlaying;
-}
-</script>
+        musicBtn.onclick = () => { if(music.paused) music.play(); else music.pause(); };
+    </script>
 </body>
 </html>
